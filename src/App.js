@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from './components/UI/Layout';
+import MapComponent from './components/Map';
+import SidePanel from './components/SidePanel';
+import React, { useState } from 'react';
+import AppContext from './Context/AppContext';
+import Login from './components/Auth/Login';
 
 function App() {
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedBookmark, setSelectedBookmark] = useState(null);
+  const [bookmarks, setBookMarks] = useState([]);
+  const [user, setUser] = useState(null);
+
+  const addBookMark = (newBookMark) => {
+    setBookMarks([...bookmarks, newBookMark]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider
+      value={{
+        selectedAddress,
+        setSelectedAddress,
+        bookmarks,
+        addBookMark,
+        selectedBookmark,
+        setSelectedBookmark,
+        user,
+      }}
+    >
+      {!user ? (
+        <Login onLoginSuccessed={(user) => setUser(user)} />
+      ) : (
+        <Layout sidePanel={<SidePanel />} map={<MapComponent />} />
+      )}
+    </AppContext.Provider>
   );
 }
 
