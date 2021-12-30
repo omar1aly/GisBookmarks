@@ -10,7 +10,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-you can use username : admin <br /> password : 123456
+you can use <br /> username : admin <br /> password : 123456 <br />
 or you can create a new username and password
 
 you can test authentication and save bookmarks in run time
