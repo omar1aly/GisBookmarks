@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import AppContext from './../../Context/AppContext';
 
 const Login = ({ onLoginSuccessed }) => {
-  const { Users, addUsers } = React.useContext(AppContext);
+  const { Users, addUsers, setUserBookMark } = React.useContext(AppContext);
   const [view, setView] = useState('login');
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -12,6 +12,7 @@ const Login = ({ onLoginSuccessed }) => {
     username: '',
     password: '',
     loginMessage: null,
+    registerMessage: 'Account Created',
   });
 
   const handleChange = (e) => {
@@ -20,6 +21,16 @@ const Login = ({ onLoginSuccessed }) => {
   };
 
   const handleRegister = () => {
+    const user = Users.filter(({ username, password }) => {
+      return username === state.username && password === state.password;
+    });
+    if (user.length > 0) {
+      setState({
+        ...state,
+        loginMessage: 'This Account Is Exist',
+        registerMessage: 'This Account Is Exist',
+      });
+    }
     if (state.username.length === 0 || state.password.length === 0) {
       setState({
         ...state,
@@ -53,10 +64,11 @@ const Login = ({ onLoginSuccessed }) => {
           ...state,
           loginMessage: 'Invalid username or password',
         });
-        console.log(Users);
-        console.log(user);
+        // console.log(Users);
+        // console.log(user);
         return;
       }
+      setUserBookMark(user);
       onLoginSuccessed(user[0]);
     }, 1000);
   };
@@ -194,7 +206,7 @@ const Login = ({ onLoginSuccessed }) => {
             </Button>
             <Snackbar open={open} autoHideDuration={6000}>
               <Alert severity="success" sx={{ width: '100%' }}>
-                Account Created
+                {state.registerMessage}
               </Alert>
             </Snackbar>
             <br />

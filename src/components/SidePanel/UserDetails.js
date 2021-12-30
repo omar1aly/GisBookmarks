@@ -9,15 +9,22 @@ const UserDetails = () => {
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           alignItems: 'center',
+          marginTop: '10px',
         }}
       >
-        <>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <Avatar sx={{ bgcolor: '#ddd' }}>{user.username[0]}</Avatar>
+          &nbsp;
           <h3>{user.username}</h3>
-        </>
-        <>
+        </div>
+        <div>
           <Button
             variant="outlined"
             color="error"
@@ -28,7 +35,7 @@ const UserDetails = () => {
           >
             Log out
           </Button>
-        </>
+        </div>
       </div>
     </>
   );

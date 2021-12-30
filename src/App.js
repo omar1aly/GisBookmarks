@@ -2,33 +2,42 @@ import './App.css';
 import Layout from './components/UI/Layout';
 import MapComponent from './components/Map';
 import SidePanel from './components/SidePanel';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppContext from './Context/AppContext';
 import Login from './components/Auth/Login';
 
 function App() {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [selectedBookmark, setSelectedBookmark] = useState(null);
-  const [bookmarks, setBookMarks] = useState([]);
+  const [Userbookmarks, setUserBookMarks] = useState([]);
   const [user, setUser] = useState(null);
   const [Users, setUsers] = useState([
     { username: 'admin', password: '123456', userBookMarks: [] },
-    { username: 'omar', password: '123', userBookMarks: [] },
+    { username: 'user', password: '123456', userBookMarks: [] },
   ]);
 
   const addBookMark = (newBookMark) => {
-    setBookMarks([...bookmarks, newBookMark]);
+    const userNow = Users.filter(
+      (usr) => usr.username === newBookMark.username
+    );
+    userNow[0].userBookMarks = [...userNow[0].userBookMarks, newBookMark];
+    setUserBookMarks(userNow[0].userBookMarks);
   };
+  const setUserBookMark = (user) => {
+    const userNow = Users.filter((usr) => usr.username === user[0].username);
+    userNow[0].userBookMarks = [...userNow[0].userBookMarks];
+    setUserBookMarks(userNow[0].userBookMarks);
+  };
+
   const addUsers = (user) => {
     setUsers([...Users, user]);
   };
-  console.log(Users);
+
   return (
     <AppContext.Provider
       value={{
         selectedAddress,
         setSelectedAddress,
-        bookmarks,
         addBookMark,
         selectedBookmark,
         setSelectedBookmark,
@@ -36,6 +45,8 @@ function App() {
         setUser,
         Users,
         addUsers,
+        Userbookmarks,
+        setUserBookMark,
       }}
     >
       {!user ? (

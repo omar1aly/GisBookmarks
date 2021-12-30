@@ -12,13 +12,12 @@ import { Button, Skeleton, Snackbar } from '@mui/material';
 export default function Search() {
   const { selectedAddress, setSelectedAddress, addBookMark, user } =
     React.useContext(AppContext);
-  const [searchValue, setSearchValue] = React.useState('cairo');
+  const [searchValue, setSearchValue] = React.useState('');
   const [searchResult, setSearchResult] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   const handleSelectedItem = (index) => setSelectedAddress(searchResult[index]);
-
   const handleClick = async () => {
     setSelectedAddress(null);
     setLoading(true);
@@ -37,8 +36,6 @@ export default function Search() {
     return (
       <>
         <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
-        <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
-        <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
       </>
     );
 
@@ -49,6 +46,7 @@ export default function Search() {
           display: 'flex',
           alignItems: 'center',
           width: '100%',
+          marginTop: '10px',
         }}
       >
         <InputBase
