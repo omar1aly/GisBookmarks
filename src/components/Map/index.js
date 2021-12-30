@@ -1,6 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-// import { Map , MapView } from '@esri/react-arcgis';
-
 import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';

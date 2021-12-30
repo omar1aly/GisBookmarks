@@ -22,21 +22,27 @@ const Login = ({ onLoginSuccessed }) => {
 
   const handleRegister = () => {
     const user = Users.filter(({ username, password }) => {
-      return username === state.username && password === state.password;
+      return username === state.username;
     });
     if (user.length > 0) {
       setState({
         ...state,
-        loginMessage: 'This Account Is Exist',
-        registerMessage: 'This Account Is Exist',
+        password: '',
+        loginMessage: 'This account already exists',
+        registerMessage: 'This account already exists',
       });
     }
-    if (state.username.length === 0 || state.password.length === 0) {
+    if (
+      state.username.length === 0 ||
+      state.username.length < 4 ||
+      state.password.length === 0 ||
+      state.password.length < 4
+    ) {
       setState({
         ...state,
-        loginMessage: 'Invalid username or password',
+        loginMessage: 'Username and password should be 4 characters',
       });
-    } else {
+    } else if (user.length < 1) {
       addUsers({
         username: state.username,
         password: state.password,
@@ -167,7 +173,7 @@ const Login = ({ onLoginSuccessed }) => {
               marginRight: 'auto',
             }}
           >
-            <h1>Register</h1>
+            <h1>Create Account</h1>
             <br />
             <br />
             <TextField
@@ -204,12 +210,27 @@ const Login = ({ onLoginSuccessed }) => {
             >
               Create Account
             </Button>
+            <br />
+            <br />
+            <Typography
+              color="primary"
+              style={{
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                setView('login');
+                state.loginMessage = null;
+                state.username = '';
+                state.password = '';
+              }}
+            >
+              Login
+            </Typography>
             <Snackbar open={open} autoHideDuration={6000}>
               <Alert severity="success" sx={{ width: '100%' }}>
                 {state.registerMessage}
               </Alert>
             </Snackbar>
-            <br />
             <br />
             <Typography color="red">{state.loginMessage}</Typography>
           </Paper>

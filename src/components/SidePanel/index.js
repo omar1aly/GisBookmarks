@@ -1,7 +1,6 @@
 import React from 'react';
 import Bookmarks from './Bookmarks';
 import Search from './Search';
-import AppContext from './../../Context/AppContext';
 import UserDetails from './UserDetails';
 
 const Index = () => {

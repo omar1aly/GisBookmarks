@@ -26,6 +26,7 @@ export default function Search() {
         searchValue +
         '&f=json&outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D&outFields=Addr_type%2CMatch_addr%2CStAddr%2CCity&location=%7B%22spatialReference%22%3A%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D%2C%22x%22%3A-278440.1027364888%2C%22y%22%3A6179636.738117529%7D&maxLocations=10'
     );
+
     if (resp.data.candidates.length === 0) setOpen(true);
 
     setSearchResult(resp.data.candidates);
