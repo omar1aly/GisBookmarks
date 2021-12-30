@@ -34,7 +34,7 @@ const Graphics = ({ view }) => {
       });
       glSearchResult.add(graph);
       view.goTo(graph);
-      view.zoom = 10;
+      view.zoom = 9;
     }
   }, [selectedAddress]);
 
