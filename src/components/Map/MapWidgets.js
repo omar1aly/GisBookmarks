@@ -13,28 +13,28 @@ const MapWidgets = ({ view }) => {
       'top-left'
     );
 
-    view.ui.add(
-      new ScaleBar({
-        view: view,
-      }),
-      'bottom-left'
-    );
+    // view.ui.add(
+    //   new ScaleBar({
+    //     view: view,
+    //   }),
+    //   'bottom-left'
+    // );
 
     view.ui.add(
       new BasemapToggle({
         view: view,
         nextBasemap: 'topo',
       }),
-      'bottom-right'
+      'bottom-left'
     );
 
-    // view.ui.add(
-    //   new Bookmarks({
-    //     view: view,
-    //     editingEnabled: true,
-    //   }),
-    //   'top-right'
-    // );
+    view.ui.add(
+      new Bookmarks({
+        view: view,
+        editingEnabled: true,
+      }),
+      'bottom-right'
+    );
   }, []);
 
   return null;

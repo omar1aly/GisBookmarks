@@ -1,9 +1,10 @@
-const Layout = ({ sidePanel, map }) => {
+const Layout = ({ sidePanel, map, user }) => {
+  console.log(user);
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex' }}>
       <div
         style={{
-          width: '30%',
+          width: '25%',
           margin: 10,
           height: 'calc(100vh - 20px)',
           overflowX: 'auto',
@@ -11,7 +12,7 @@ const Layout = ({ sidePanel, map }) => {
       >
         {sidePanel}
       </div>
-      <div style={{ width: '70%' }}>{map}</div>
+      <div style={{ width: '75%' }}>{map}</div>
     </div>
   );
 };

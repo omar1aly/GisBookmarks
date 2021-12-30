@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Clear from '@mui/icons-material/Clear';
 import axios from 'axios';
 import AppContext from './../../Context/AppContext';
-import { Button, Snackbar } from '@mui/material';
+import { Button, Skeleton, Snackbar } from '@mui/material';
 
 export default function Search() {
   const { selectedAddress, setSelectedAddress, addBookMark, user } =
@@ -33,7 +33,14 @@ export default function Search() {
     setLoading(false);
   };
 
-  if (loading) return 'Loading....';
+  if (loading)
+    return (
+      <>
+        <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
+        <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
+        <Skeleton variant="rectangular" height={50} animation="wave" /> <br />
+      </>
+    );
 
   return (
     <>
@@ -109,7 +116,7 @@ export default function Search() {
         searchResult.length > 0 &&
         searchResult.map((sr, indx) => (
           <Paper
-            style={{ padding: 10, margin: 10 }}
+            style={{ padding: 10, margin: 10, cursor: 'pointer' }}
             key={indx}
             onClick={() => handleSelectedItem(indx)}
           >
