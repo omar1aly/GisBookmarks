@@ -10,6 +10,12 @@ In the project directory, you can run:
 
 ### `npm start`
 
+you can use username : admin
+and password : 123456
+or you can create a new username and password
+
+you can test authentication and save bookmarks in run time
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
